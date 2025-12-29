@@ -1,0 +1,42 @@
+import os
+import sys
+from typing import Any
+
+try:
+    from flask import Flask, send_from_directory
+except ImportError:
+    print(
+        "Flask is not installed in this environment.\n"
+        "Install dependencies with: pip install -r requirements.txt",
+        file=sys.stderr,
+    )
+    raise
+
+from Projects.pdf2jpg import register_pdf_routes
+
+
+def create_app() -> Any:
+    app = Flask(__name__, static_folder="static", template_folder="templates")
+    app.config.setdefault("MAX_CONTENT_LENGTH", 100 * 1024 * 1024)  # 100 MB
+    app.secret_key = os.environ.get("FLASK_SECRET", "dev-secret")
+
+    register_pdf_routes(app)
+
+    @app.route("/")
+    def index():
+        return send_from_directory("static/html", "index.html")
+
+    @app.route("/projects")
+    def projects():
+        return send_from_directory("static/html", "projects.html")
+
+    @app.route("/contact")
+    def contact():
+        return send_from_directory("static/html", "contact.html")
+
+    return app
+
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run(debug=True, host="0.0.0.0", port=5000)

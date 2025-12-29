@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PDF → Images</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="/">My Portfolio</a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="upload">
+        <h1>Convert PDF to Images</h1>
+        <p>Upload a PDF and download a ZIP containing PNG images (one per page).</p>
+
+        <form action="/pdf2images" method="post" enctype="multipart/form-data" class="upload-form">
+          <label for="pdf_file">Select PDF file</label>
+          <input id="pdf_file" name="pdf_file" type="file" accept="application/pdf" required />
+          <button class="btn" type="submit">Convert and download ZIP</button>
+        </form>
+
+        <p class="muted">Max upload: 100 MB. Files are processed server-side and not stored permanently.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© Your Name — Built with Flask</p>
+    </footer>
+  </body>
+</html>
