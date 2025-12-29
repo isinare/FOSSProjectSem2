@@ -26,3 +26,50 @@ body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif; background:
 .flash.error{background:#ffefef;color:#7a1e1e;border:1px solid #ffd2d2}
 .flash.message{background:#eef6ff;color:#0b3d91;border:1px solid #d7e9ff}
 @media (max-width:640px){.nav{padding:.75rem}.content{margin:1rem auto}}
+
+/* Modern theme overrides - opt-in via adding class="modern" to <body> */
+.modern{
+  /* base background for modern pages: subtle purple wash */
+  --modern-bg: linear-gradient(180deg,#0f0520 0%, #24103a 45%, #2b0f3a 100%);
+  --modern-accent-1: #7c4dff; /* violet */
+  --modern-accent-2: #ffd54f; /* warm yellow */
+  --modern-glow: rgba(124,77,255,0.16);
+  color: #eef2ff;
+  background: var(--modern-bg);
+}
+.modern .site-header{background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));box-shadow:0 10px 30px rgba(10,8,20,0.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04)}
+.modern .nav{max-width:1200px;padding:1.25rem}
+.modern .brand{font-size:1.125rem;letter-spacing:0.3px;color:var(--modern-accent-2);font-weight:700}
+.modern .hero{position:relative;padding:4rem 1rem;border-radius:14px;overflow:hidden}
+.modern .hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:220px;background:radial-gradient(closest-side, rgba(124,77,255,0.12), transparent 40%), linear-gradient(90deg, rgba(255,213,79,0.06), rgba(124,77,255,0.06));filter:blur(32px);transform:translateY(-10%);pointer-events:none}
+.modern .hero h1{font-size:2.5rem;margin:.2rem 0;color:#fff;text-shadow:0 6px 30px rgba(44,8,88,0.42)}
+.modern .lead{color:rgba(255,255,255,0.78);font-size:1.05rem}
+.modern .content{max-width:1200px;padding:0 1.25rem;margin:2.5rem auto}
+.modern .btn{background:linear-gradient(90deg,var(--modern-accent-1), #5b3bff 60%);box-shadow:0 8px 30px var(--modern-glow);border-radius:12px;padding:.7rem 1.15rem}
+.modern .btn.muted{background:linear-gradient(90deg, rgba(255,213,79,0.08), rgba(124,77,255,0.04));color:var(--modern-accent-2);box-shadow:none}
+.modern .about,.modern .skills,.modern .projects,.modern .contact{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:1.5rem;border-radius:12px;box-shadow:0 8px 30px rgba(8,6,20,0.5);border:1px solid rgba(255,255,255,0.03)}
+.modern .project-grid{gap:1.25rem}
+.modern .project-card{padding:1.25rem;border-radius:12px;border:0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(8,6,20,0.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.modern .site-footer{max-width:1200px;margin:3rem auto;padding:1rem;color:rgba(255,255,255,0.6)}
+
+/* Keep legacy tool page styles intact by not applying .modern to its body */
+
+/* Card hover + button icons for modern theme */
+.modern .project-card{transition:transform 200ms cubic-bezier(.2,.9,.2,1), box-shadow 200ms cubic-bezier(.2,.9,.2,1)}
+.modern .project-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 18px 40px rgba(16,24,40,0.12)}
+
+/* Iconified buttons (scoped to modern pages only) */
+.modern .btn{display:inline-flex;align-items:center;gap:0.6rem;padding:.6rem 1.05rem}
+.modern .btn::before{content:"";display:inline-block;width:18px;height:18px;flex:0 0 18px;background-size:18px 18px;background-repeat:no-repeat;opacity:0.98;filter:drop-shadow(0 6px 18px rgba(124,77,255,0.18))}
+
+/* primary button arrow icon (white) */
+.modern .btn{position:relative}
+
+/* primary button arrow icon (white/yellow on purple) */
+.modern .btn::before{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff59d'><path d='M13 5l7 7-7 7v-4H3v-6h10V5z'/></svg>")}
+
+/* muted button uses a softer colored envelope icon */
+.modern .btn.muted::before{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237c4dff'><path d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z'/></svg>")}
+
+/* small accessibility: ensure icon doesn't hide button text on very small screens */
+@media (max-width:420px){.modern .btn{gap:.4rem;padding:.5rem .8rem}.modern .btn::before{width:16px;height:16px;background-size:16px 16px}}
