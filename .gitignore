@@ -1,0 +1,5 @@
+.gitignore
+
+.venv
+Projects/__pycache__
+app.py.bak
