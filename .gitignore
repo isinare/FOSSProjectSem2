@@ -3,3 +3,4 @@
 .venv
 Projects/__pycache__
 app.py.bak
+__pycache__
