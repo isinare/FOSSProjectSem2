@@ -5,13 +5,13 @@
   --text: #0f172a;
 }
 *{box-sizing:border-box}
-body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif; background:var(--bg); color:var(--text); margin:0;}
+body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif; background:var(--bg); color:var(--text); margin:0; display:flex; flex-direction:column; min-height:100vh;}
 .site-header{background:#fff; border-bottom:1px solid #e6eef7}
 .nav{max-width:980px;margin:0 auto;padding:1rem;display:flex;align-items:center;justify-content:space-between}
 .nav-links{list-style:none;margin:0;padding:0;display:flex;gap:1rem}
 .nav a{color:var(--text);text-decoration:none}
 .brand{font-weight:700}
-.content{max-width:980px;margin:2rem auto;padding:0 1rem}
+.content{max-width:980px;margin:2rem auto;padding:0 1rem;flex:1 0 auto}
 .hero{padding:3rem 0}
 .lead{color:var(--muted)}
 .btn{background:var(--accent);color:#fff;padding:.5rem 1rem;border-radius:6px;text-decoration:none}
@@ -20,7 +20,7 @@ body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif; background:
 .skill-list{display:flex;gap:.5rem;flex-wrap:wrap;padding:0;margin:0;list-style:none}
 .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
 .project-card{padding:1rem;background:#fff;border:1px solid #eef2f6;border-radius:8px}
-.site-footer{max-width:980px;margin:2rem auto;padding:1rem;color:var(--muted)}
+.site-footer{max-width:980px;margin:0 auto;padding:1rem;color:var(--muted);margin-top:auto}
 .flashes{max-width:980px;margin:1rem auto;padding:0 1rem}
 .flash{padding:.5rem 1rem;border-radius:6px;margin-bottom:.5rem}
 .flash.error{background:#ffefef;color:#7a1e1e;border:1px solid #ffd2d2}
@@ -29,28 +29,61 @@ body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif; background:
 
 /* Modern theme overrides - opt-in via adding class="modern" to <body> */
 .modern{
-  /* base background for modern pages: subtle purple wash */
-  --modern-bg: linear-gradient(180deg,#0f0520 0%, #24103a 45%, #2b0f3a 100%);
+  /* techy purple → yellow background (smooth, no banding)
+     Use a single smooth linear gradient + a faint radial vignette for depth.
+     background-attachment: fixed helps avoid visible banding on some displays. */
   --modern-accent-1: #7c4dff; /* violet */
   --modern-accent-2: #ffd54f; /* warm yellow */
-  --modern-glow: rgba(124,77,255,0.16);
+  --modern-glow: rgba(124,77,255,0.12);
   color: #eef2ff;
-  background: var(--modern-bg);
+  background: linear-gradient(180deg,#120318 0%, #24103a 45%, #0c0610 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-.modern .site-header{background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));box-shadow:0 10px 30px rgba(10,8,20,0.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04)}
-.modern .nav{max-width:1200px;padding:1.25rem}
+.modern .site-header{
+  background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow:0 6px 18px rgba(10,8,20,0.25);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(255,255,255,0.02);
+}
+.modern .nav{max-width:1200px;padding:1.25rem;margin:0 auto}
 .modern .brand{font-size:1.125rem;letter-spacing:0.3px;color:var(--modern-accent-2);font-weight:700}
-.modern .hero{position:relative;padding:4rem 1rem;border-radius:14px;overflow:hidden}
-.modern .hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:220px;background:radial-gradient(closest-side, rgba(124,77,255,0.12), transparent 40%), linear-gradient(90deg, rgba(255,213,79,0.06), rgba(124,77,255,0.06));filter:blur(32px);transform:translateY(-10%);pointer-events:none}
+.modern .nav a{color:#ffffff;text-decoration:none;font-weight:600}
+.modern .nav a:hover{color:var(--modern-accent-2);opacity:0.95}
+.modern .nav a.active{color:#ffffff;text-shadow:0 2px 8px rgba(255,213,79,0.12)}
+.modern .hero{position:relative;padding:4rem 1rem;border-radius:14px;overflow:hidden;max-width:1100px;margin:0 auto}
+.modern .hero::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-6%;
+  transform:translateX(-50%) translateY(0);
+  width:110%;
+  height:320px;
+  border-radius:50%;
+  background:radial-gradient(closest-side, rgba(124,77,255,0.12), transparent 36%), linear-gradient(90deg, rgba(255,213,79,0.06), rgba(124,77,255,0.06));
+  filter:blur(28px);
+  pointer-events:none;
+}
 .modern .hero h1{font-size:2.5rem;margin:.2rem 0;color:#fff;text-shadow:0 6px 30px rgba(44,8,88,0.42)}
 .modern .lead{color:rgba(255,255,255,0.78);font-size:1.05rem}
-.modern .content{max-width:1200px;padding:0 1.25rem;margin:2.5rem auto}
-.modern .btn{background:linear-gradient(90deg,var(--modern-accent-1), #5b3bff 60%);box-shadow:0 8px 30px var(--modern-glow);border-radius:12px;padding:.7rem 1.15rem}
+.modern .content{max-width:none;padding:3rem 6rem;margin:2.5rem auto;box-sizing:border-box}
+.modern .btn{background:linear-gradient(90deg,var(--modern-accent-1), #5b3bff 60%);box-shadow:0 6px 24px var(--modern-glow);border-radius:12px;padding:.7rem 1.15rem}
 .modern .btn.muted{background:linear-gradient(90deg, rgba(255,213,79,0.08), rgba(124,77,255,0.04));color:var(--modern-accent-2);box-shadow:none}
-.modern .about,.modern .skills,.modern .projects,.modern .contact{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:1.5rem;border-radius:12px;box-shadow:0 8px 30px rgba(8,6,20,0.5);border:1px solid rgba(255,255,255,0.03)}
-.modern .project-grid{gap:1.25rem}
-.modern .project-card{padding:1.25rem;border-radius:12px;border:0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(8,6,20,0.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.modern .site-footer{max-width:1200px;margin:3rem auto;padding:1rem;color:rgba(255,255,255,0.6)}
+.modern .about,.modern .skills,.modern .projects,.modern .contact{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));padding:1.5rem;border-radius:12px;box-shadow:0 6px 18px rgba(8,6,20,0.35);border:1px solid rgba(255,255,255,0.02)}
+
+/* Make inline links inside content readable (email, project links) */
+.modern .content a, .modern .contact a { color: var(--modern-accent-2); text-decoration:underline; }
+.modern .content a:hover, .modern .contact a:hover { color: #fff; }
+.modern .project-grid{gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.modern .project-card{padding:1.25rem;border-radius:12px;border:0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 8px 24px rgba(8,6,20,0.35);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms}
+.modern .site-footer{max-width:1200px;margin:3rem auto;padding:1rem;color:rgba(255,255,255,0.6);background:transparent}
+
+/* Remove hard horizontal banding by ensuring no large full-width panels use
+  opaque backgrounds. Keep sections semi-transparent so the body gradient
+  reads smoothly without strong lines. */
+.modern .content, .modern main {background:transparent}
 
 /* Keep legacy tool page styles intact by not applying .modern to its body */
 
@@ -73,3 +106,11 @@ body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif; background:
 
 /* small accessibility: ensure icon doesn't hide button text on very small screens */
 @media (max-width:420px){.modern .btn{gap:.4rem;padding:.5rem .8rem}.modern .btn::before{width:16px;height:16px;background-size:16px 16px}}
+
+/* Responsive: reduce side padding on smaller screens so content remains readable */
+@media (max-width:1024px){
+  .modern .content{padding:2rem 3rem}
+}
+@media (max-width:640px){
+  .modern .content{padding:1.25rem}
+}
