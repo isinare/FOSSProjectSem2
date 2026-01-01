@@ -40,7 +40,7 @@ A high-performance, modular web application engineered to batch convert PDF docu
 To run this project locally on your machine:
 
 1. **Clone the repository:**  
-   git clone https://github.com/isinare/FOSSProjectSem2.git\
+   git clone https://github.com/isinare/FOSSProjectSem2.git \
    cd FOSSProjectSem2  
 
 2. **Create a Virtual Environment:**  
