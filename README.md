@@ -54,7 +54,7 @@ To run this project locally on your machine:
    python app.py  
    Access the application at http://localhost:5000.
 
-## **☁️ Deployment (AWS EC2)**
+## **Deployment (AWS EC2)**
 
 The live production environment is deployed using the following configuration:
 
