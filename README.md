@@ -5,7 +5,7 @@ A high-performance, modular web application engineered to batch convert PDF docu
 
 **This project is primarily designed as a modular showcase platform.** It provides a scalable and simple foundation to easily integrate and display future Python and C++ projects within a unified, professional web interface.
 
-## **🚀 Key Features**
+## **Key Features**
 
 * **Modular Portfolio Architecture:** Designed specifically to serve as an extensible showcase website. The code structure allows for the seamless addition of new modules (projects) with minimal configuration, making it the perfect home for future Python and C++(incorporated as python modules) applications.  
 * **High-Performance Processing:** Leverages **PyMuPDF (Fitz)** for rapid PDF operations.  
@@ -13,7 +13,7 @@ A high-performance, modular web application engineered to batch convert PDF docu
 * **Production Infrastructure:** Hosted on **AWS EC2** (Ubuntu), utilizing **Nginx** as a reverse proxy and **Gunicorn** as the WSGI application server.  
 * **Automated DevOps:** Features a robust CI/CD pipeline using **GitHub Actions** for automated testing and zero-downtime deployment to the live environment.
 
-## **🛠️ Tech Stack**
+## **Tech Stack**
 
 ### **Backend & Logic**
 
@@ -36,24 +36,11 @@ A high-performance, modular web application engineered to batch convert PDF docu
 * **DNS**: DuckDNS (Dynamic DNS resolution).  
 * **CI/CD**: GitHub Actions (Automated deployment workflow).
 
-## **🏗️ Architecture Overview**
-
-    Website  
-        User\[User Browser\] \--\>|HTTP/80| Nginx\[Nginx Reverse Proxy\]  
-        Nginx \--\>|Unix Socket| Gunicorn\[Gunicorn WSGI Server\]  
-        Gunicorn \--\>|Python| Flask\[Flask Application\]  
-        Flask \--\>|Stream| PyMuPDF\[PyMuPDF Engine\]
-
-        PDF2JPG Project:  
-            PyMuPDF \--\>|In-Memory Buffer| Zip\[ZipFile Module\]  
-            Zip \--\>|Download| User
-
-## **🔧 Installation & Local Development**
-
+## **Installation & Local Development**
 To run this project locally on your machine:
 
 1. **Clone the repository:**  
-   git clone \[https://github.com/isinare/FOSSProjectSem2.git\](https://github.com/isinare/FOSSProjectSem2.git)  
+   git clone https://github.com/isinare/FOSSProjectSem2.git \
    cd FOSSProjectSem2  
 
 2. **Create a Virtual Environment:**  
@@ -67,7 +54,7 @@ To run this project locally on your machine:
    python app.py  
    Access the application at http://localhost:5000.
 
-## **☁️ Deployment (AWS EC2)**
+## **Deployment (AWS EC2)**
 
 The live production environment is deployed using the following configuration:
 
@@ -82,8 +69,7 @@ The live production environment is deployed using the following configuration:
    * Updates dependencies.  
    * Restarts the Systemd service to apply changes instantly.
 
-## **📜 License**
-
+## **License**
 This project is licensed under the MIT License
 
 **Author:** Ishan Sinare
